@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora 3D Sólida</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <!-- NOTA EXPLICATIVA: 
+         El lienzo 'canvas' se usa para dibujar gráficos mediante código JavaScript. 
+         Aquí se usará como un tapiz dinámico donde flotarán las partículas de fondo. -->
+    <canvas id="fondo"></canvas>
+    
+    <!-- CONTENEDOR PRINCIPAL: Agrupa toda la interfaz gráfica de la calculadora -->
+    <div class="container">
+        <h1>Calculadora 3D</h1>
+        <p class="sub">Pasa el mouse sobre una figura para hacerla girar</p>
+        
+        <!-- GRID EN CSS: Organiza las tarjetas en una cuadrícula responsiva (se adapta a la pantalla) -->
+        <div class="grid">
+            
+            <!-- TARJETA 1: CILINDRO -->
+            <div class="card">
+                <h2>Cilindro</h2>
+                
+                <!-- NOTA EXPLICATIVA: 
+                     Cada bloque '.figura3d' actúa como la ventana de observación 3D. 
+                     El elemento '.escena' rotará y contendrá la figura sólida. -->
+                <div class="figura3d">
+                    <div class="escena">
+                        <div class="cilindro">
+                            <div class="cara arriba"></div>
+                            <div class="cara cuerpo"></div>
+                            <div class="cara abajo"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ENTRADAS DE DATOS (INPUTS): Tienen un ID único para leer sus valores con JavaScript -->
+                <label>Radio: <input type="number" id="rCil" placeholder="3"></label>
+                <label>Altura: <input type="number" id="aCil" placeholder="5"></label>
+                
+                <!-- BOTONES DE ACCIÓN: Ejecutan las funciones de cálculo y limpieza -->
+                <div class="acciones">
+                    <button onclick="calcular('cilindro')">▶ Calcular</button>
+                    <button class="limpiar">Limpiar</button>
+                </div>
+                
+                <!-- RESULTADO: Muestra el valor numérico e incluye la barra de progreso -->
+                <div class="resultado" id="resCil">
+                    <span>Volumen: --- cm³</span>
+                    <div class="barra"><div class="lleno" id="barCil"></div></div>
+                </div>
+            </div>
+            
+            <!-- TARJETA 2: CONO -->
+            <div class="card">
+                <h2>Cono</h2>
+                <div class="figura3d">
+                    <div class="escena">
+                        <div class="cono">
+                            <div class="pico"></div>
+                            <div class="base"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <label>Radio: <input type="number" id="rCon" placeholder="4"></label>
+                <label>Altura: <input type="number" id="aCon" placeholder="6"></label>
+                
+                <div class="acciones">
+                    <button onclick="calcular('cono')">▶ Calcular</button>
+                    <button class="limpiar">Limpiar</button>
+                </div>
+                
+                <div class="resultado" id="resCon">
+                    <span>Volumen: --- cm³</span>
+                    <div class="barra"><div class="lleno" id="barCon"></div></div>
+                </div>
+            </div>
+            
+            <!-- TARJETA 3: ESFERA -->
+            <div class="card">
+                <h2>Esfera</h2>
+                <div class="figura3d">
+                    <div class="escena">
+                        <div class="esfera"></div>
+                    </div>
+                </div>
+                
+                <label>Radio: <input type="number" id="rEsf" placeholder="5"></label>
+                
+                <div class="acciones">
+                    <button onclick="calcular('esfera')">▶ Calcular</button>
+                    <button class="limpiar">Limpiar</button>
+                </div>
+                
+                <div class="resultado" id="resEsf">
+                    <span>Volumen: --- cm³</span>
+                    <div class="barra"><div class="lleno" id="barEsf"></div></div>
+                </div>
+            </div>
+            
+            <!-- TARJETA 4: CUBO -->
+            <div class="card">
+                <h2>Cubo</h2>
+                <div class="figura3d">
+                    <div class="escena">
+                        <div class="cubo">
+                            <!-- El cubo requiere 6 caras HTML individuales para formar las 6 paredes 3D -->
+                            <div class="cara f"></div>
+                            <div class="cara t"></div>
+                            <div class="cara i"></div>
+                            <div class="cara d"></div>
+                            <div class="cara arr"></div>
+                            <div class="cara aba"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <label>Lado: <input type="number" id="lCub" placeholder="4"></label>
+                
+                <div class="acciones">
+                    <button onclick="calcular('cubo')">▶ Calcular</button>
+                    <button class="limpiar">Limpiar</button>
+                </div>
+                
+                <div class="resultado" id="resCub">
+                    <span>Volumen: --- cm³</span>
+                    <div class="barra"><div class="lleno" id="barCub"></div></div>
+                </div>
+            </div>
+            
+        </div>
+        
+        <!-- BOTÓN GLOBAL: Limpia los datos de todas las tarjetas simultáneamente -->
+        <button class="limpiar-todo" onclick="limpiarTodo()">🧹 Limpiar todo</button>
+        <footer>✨ Figuras 3D Sólidas e Interactivas</footer>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
